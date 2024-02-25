@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useRef, useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { Box, Stack, Typography } from '@mui/material';
 
@@ -9,6 +9,7 @@ import Loader from './Loader';
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
+  const searchResultsRef = useRef(null)
 
    useEffect(() => {
     const fetchExercisesData = async () => {
@@ -36,7 +37,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     setCurrentPage(value);
 
     // You can optionally scroll here, but ensure that it's within bounds
-    // window.scrollTo({ top: 1800, behavior: 'smooth' });
+    window.scrollTo({ top: 1300, behavior: 'smooth' });
   };
 
   if (!Array.isArray(currentExercises) || currentExercises.length === 0) {
@@ -44,7 +45,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   }
 
   return (
-    <Box id="exercises" sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
+    <Box ref={searchResultsRef} id="exercises" sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
       <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="46px">Showing Results</Typography>
       <Stack direction="row" sx={{ gap: { lg: '107px', xs: '50px' } }} flexWrap="wrap" justifyContent="center">
         {currentExercises.map((exercise, idx) => (
