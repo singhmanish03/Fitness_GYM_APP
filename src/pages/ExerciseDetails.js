@@ -30,13 +30,21 @@ const ExerciseDetails = () => {
       setTargetMuscleExercises(targetMuscleExercisesData);
 
       const equimentExercisesData = await fetchData(`${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`, exerciseOptions);
+
       setEquipmentExercises(equimentExercisesData);
 
+      window.scroll(0,0);
     }
     fetchExerciseData();
 
   }, [id]);
-
+  
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // Smooth scrolling behavior
+    });
+  }, []); 
 
 
   return (

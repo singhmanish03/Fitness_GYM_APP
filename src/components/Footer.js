@@ -1,14 +1,38 @@
 import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
-import Logo from '../assets/assets/images/Logo-1.png';
+import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { keyframes } from '@emotion/react';
 
-const Footer = () => (
-  <Box mt="80px" bgcolor="#FFF3F4">
-    <Stack gap="40px" sx={{ alignItems: 'center' }} flexWrap="wrap" px="40px" pt="24px">
-      <img src={Logo} alt="logo" style={{ width: '200px', height: '41px' }} />
-    </Stack>
-    <Typography variant="h5" sx={{ fontSize: { lg: '28px', xs: '20px' } }} mt="41px" textAlign="center" pb="40px">Made with ❤️ by Manish Singh</Typography>
-  </Box>
-);
+const Footer = () => {
+  const theme = useTheme();
+
+  const fadeIn = keyframes`
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  `;
+
+  return (
+    <Box mt="80px"
+      sx={{
+        background: `linear-gradient(to right, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+        padding: '40px',
+        borderRadius: '10px',
+        animation: `${fadeIn} 1s ease-in-out`,
+      }}
+    >
+      <Stack gap="4px" sx={{ alignItems: 'center' }} flexWrap="wrap">
+        <Typography variant="h5" sx={{ color: '#FFFFFF' }}>
+          © 2024 Fitness Club. All rights reserved.
+        </Typography>
+        <Typography variant="h6" sx={{ color: '#FFFFFF' }}>
+          Made Wth ❤️ Manish Singh
+        </Typography>
+      </Stack>
+    </Box>
+  );
+};
 
 export default Footer;
